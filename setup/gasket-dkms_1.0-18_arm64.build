@@ -1,0 +1,51 @@
+ dpkg-buildpackage -us -uc -ui -tc -b
+dpkg-buildpackage: info: source package gasket-dkms
+dpkg-buildpackage: info: source version 1.0-18
+dpkg-buildpackage: info: source distribution unstable
+dpkg-buildpackage: info: source changed by Coral <coral-support@google.com>
+ dpkg-source --before-build .
+dpkg-buildpackage: info: host architecture arm64
+ fakeroot debian/rules clean
+dh clean --with dkms
+   dh_clean
+ debian/rules build
+dh build --with dkms
+   dh_update_autotools_config
+   dh_autoreconf
+   create-stamp debian/debhelper-build-stamp
+ fakeroot debian/rules binary
+dh binary --with dkms
+   dh_testroot
+   dh_prep
+   debian/rules override_dh_install
+make[1]: Entering directory '/home/juan/gasket-driver'
+dh_install src/* usr/src/gasket-1.0/
+make[1]: Leaving directory '/home/juan/gasket-driver'
+   dh_installdocs
+   dh_installchangelogs
+   debian/rules override_dh_dkms
+make[1]: Entering directory '/home/juan/gasket-driver'
+dh_dkms -V 1.0
+make[1]: Leaving directory '/home/juan/gasket-driver'
+   dh_installudev
+   dh_perl
+   dh_link
+   dh_strip_nondeterminism
+   dh_compress
+   dh_fixperms
+   dh_missing
+   dh_installdeb
+   dh_gencontrol
+   dh_md5sums
+   dh_builddeb
+dpkg-deb: building package 'gasket-dkms' in '../gasket-dkms_1.0-18_all.deb'.
+ dpkg-genbuildinfo --build=binary -O../gasket-dkms_1.0-18_arm64.buildinfo
+ dpkg-genchanges --build=binary -O../gasket-dkms_1.0-18_arm64.changes
+dpkg-genchanges: info: binary-only upload (no source code included)
+ fakeroot debian/rules clean
+dh clean --with dkms
+   dh_clean
+ dpkg-source --after-build .
+dpkg-buildpackage: info: binary-only upload (no source included)
+Now running lintian gasket-dkms_1.0-18_arm64.changes ...
+Finished running lintian.
