@@ -56,6 +56,34 @@ Run machine learning models locally on Raspberry Pi 5 with Coral TPU M.2 Acceler
 
 	`uname -a`
 
+ - Kernel version string contains `-v8`
+
+### Device Tree Change
+
+ - Back up the current dtb
+
+	`sudo cp /boot/firmware/bcm2712-rpi-5-b.dtb /boot/firmware/bcm2712-rpi-5-b.dtb.bak`
+
+ - Decompile the current dtb (ignore warnings)
+
+	`dtc -I dtb -O dts /boot/firmware/bcm2712-rpi-5-b.dtb -o ~/test.dts`
+
+ - Edit the file
+
+	`nano ~/test.dts`
+
+ - Find with Ctrl + W
+
+	 `pcie@110000`
+ 
+ - Change `msi-parent = <0x2f>;` to  `msi-parent = <0x67>;`
+
+ - Save the file.
+
+ - Recompile the dtb and move it back to the firmware directory
+	
+	`dtc -I dts -O dtb ~/test.dts -o ~/test.dtb`
+	`sudo mv ~/test.dtb /boot/firmware/bcm2712-rpi-5-b.dtb`
 ### Pyenv Installation
 
 Provide instructions on how to install `pyenv` and set up the required Python version, including steps to verify the installation.
