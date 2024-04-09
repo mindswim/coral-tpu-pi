@@ -38,15 +38,13 @@ Run machine learning models locally on Raspberry Pi 5 with Coral TPU M.2 Acceler
 
 	`dtparam=pciex1_gen=2`
 
-  - Save and exit:
-
-	# Ctrl-X, then press Y and Enter
+  - Save and exit: Ctrl-X, then press Y and Enter
 
   - Disable ASPM by editing cmdline.txt
 
 	`sudo nano /boot/firmware/cmdline.txt`
 
-  - Add 'pcie_aspm=off' before 'rootwait'. 
+  - Add `pcie_aspm=off` before `rootwait`. 
 
   - Save and exit as above.
 
