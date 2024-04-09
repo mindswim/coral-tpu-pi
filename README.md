@@ -32,9 +32,9 @@ Run machine learning models locally on Raspberry Pi 5 with Coral TPU M.2 Acceler
 
   - Inside nano, add these lines at the end:
 
-	`kernel=kernel8.img`
-	`dtparam=pciex1`
-	`dtparam=pciex1_gen=2`
+	`kernel=kernel8.img` \n
+	`dtparam=pciex1` \n
+	`dtparam=pciex1_gen=2` \n
 
   - Save and exit:
 
